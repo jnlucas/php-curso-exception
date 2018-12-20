@@ -1,48 +1,35 @@
 <?php
 
 ini_set('display_errors',1);
-
-require_once "autoload.php";
-
-
-use Entity\Cliente;
-
-use Entity\ContaCorrente;
+error_reporting(E_ALL);
+header('Content-Type: text/html; charset=utf-8');
 
 
+require_once "Entity/ContaCorrente.php";
 
 
-class Main{
+$contaCorrenteJoao = new ContaCorrente("João Lucas","5199","16321-2", 500.50);
+
+$contaCorrenteJose = new ContaCorrente("Jose da silva","5199","122221-2", 900.50);
+
+
+echo "Inicio da conta dos correntistas joao e jose<br />";
+echo $contaCorrenteJoao;
+
+echo $contaCorrenteJose;
+
+echo "<br />";
+
+
+$contaCorrenteJoao->sacar(20.00);
+echo $contaCorrenteJoao; 
+
+$contaCorrenteJoao->depositar(20.00);
+echo $contaCorrenteJoao; 
 
 
 
-	public function Main(){
-		
+$contaCorrenteJoao->transferir(10.00, $contaCorrenteJose);
+echo $contaCorrenteJoao; 
 
-		$contaCorrente = new ContaCorrente();
-
-		$contaCorrente->titular = "joao";
-		$contaCorrente->agencia = "5199";
-		$contaCorrente->numero = "163212";
-		$contaCorrente->saldo = "100000";
-
-
-		Self::dump($contaCorrente); 
-
-
-	}
-
-
-	private static function dump($value){
-
-		echo "<pre>";
-		print_r($value);
-		echo "</pre>";
-
-	}
-}
-
-
-new Main();
-
-?>
+echo $contaCorrenteJose; 
