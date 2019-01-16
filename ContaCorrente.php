@@ -22,38 +22,6 @@ class ContaCorrente{
 
 
 
-	public function sacar($valor){
-
-		Validacao::verificaNumerico($valor);
-
-		$this->saldo = $this->saldo - $valor;
-		return $this;
-
-	}
-	
-	public function depositar($valor){
-		
-		Validacao::verificaNumerico($valor);
-
-		$this->saldo = $this->saldo + $valor;
-		return $this;
-
-	}
-
-	public function transferir($valor, ContaCorrente $contaCorrente){
-
-		Validacao::verificaNumerico($valor);
-
-		$this->sacar($valor);
-
-		$contaCorrente->depositar($valor);
-
-		return $this;
-
-
-	}
-
-
 	public function __get($atributo){
 
 		Validacao::protegeAtributo($atributo);
@@ -71,6 +39,39 @@ class ContaCorrente{
 
 	}
 
+	public function transferir($valor, ContaCorrente $contaCorrente){
+
+		Validacao::verificaNumerico($valor);
+
+		$this->sacar($valor);
+
+		$contaCorrente->depositar($valor);
+
+		return $this;
+
+	}
+
+	public function getTitular(){
+		return $this->titular;
+	}
+
+	public function sacar($valor){
+
+		Validacao::verificaNumerico($valor);
+
+		$this->saldo = $this->saldo - $valor;
+		return $this;
+
+	}
+	
+	public function depositar($valor){
+		
+		Validacao::verificaNumerico($valor);
+
+		$this->saldo = $this->saldo + $valor;
+		return $this;
+
+	}
 
 	
 	
