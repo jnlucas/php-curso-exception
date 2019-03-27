@@ -46,8 +46,6 @@ class ContaCorrente{
 	}
 
 
-
-
 	public function __get($atributo){
 
 		Validacao::protegeAtributo($atributo);
@@ -67,7 +65,6 @@ class ContaCorrente{
 
 	public function transferir($valor, ContaCorrente $contaCorrente){
 
-
 		Validacao::verificaNumerico($valor);
 		if($valor <= 0){
 			throw new \InvalidArgumentException("Valor inválido para transferencia");
@@ -77,9 +74,7 @@ class ContaCorrente{
 
 		}catch(\Exceptions\SaldoInsuficienteException $e){
 				$this->contadorTransferenciasNaoPermitidas ++;
-
 				throw new \Exceptions\OperacaoFinanceiraException("Operação não realizada", $e->getCode(),$e );
-
 		}
 
 		$contaCorrente->depositar($valor);
@@ -143,9 +138,6 @@ class ContaCorrente{
 	public function setNumero($numero){
 		return $this->numero = $numero;
 	}
-
-
-
 
 
 	private function formataSaldo(){
