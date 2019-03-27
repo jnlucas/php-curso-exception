@@ -15,7 +15,7 @@ class Validacao{
 	public static function verificaNumerico($valor){
 
         if(!is_numeric($valor)){
-		      throw new \InvalidArgumentException("o Tipo passado nao é um numero valido");
+		    throw new \InvalidArgumentException("o Tipo passado nao é um numero valido");
         }
     }
 
