@@ -73,8 +73,8 @@ class ContaCorrente{
 			$this->sacar($valor);
 
 		}catch(\Exceptions\SaldoInsuficienteException $e){
-				$this->contadorTransferenciasNaoPermitidas ++;
-				throw new \Exceptions\OperacaoFinanceiraException("Operação não realizada", $e->getCode(),$e );
+			$this->contadorTransferenciasNaoPermitidas ++;
+			throw new \Exceptions\OperacaoFinanceiraException("Operação não realizada", $e->getCode(),$e );
 		}
 
 		$contaCorrente->depositar($valor);
@@ -87,19 +87,19 @@ class ContaCorrente{
 
 	private function logarTransferencia(){
 
-			try{
-					$leitor = new LeitorDeArquivo("contas.txt");
+		try{
+			$leitor = new LeitorDeArquivo("contas.txt");
 
-					$leitor->letProximaLinha();
-					$leitor->letProximaLinha();
-					$leitor->letProximaLinha();
+			$leitor->letProximaLinha();
+			$leitor->letProximaLinha();
+			$leitor->letProximaLinha();
 
-			}catch(\Exception $e){
-					echo "exeção so ler arquivo";
+		}catch(\Exception $e){
+			echo "exeção so ler arquivo";
 
-			}finally{
-				$leitor->fechar();
-			}
+		}finally{
+			$leitor->fechar();
+		}
 
 
 	}
@@ -110,16 +110,16 @@ class ContaCorrente{
 
 	public function sacar($valor){
 
-			Validacao::verificaNumerico($valor);
+		Validacao::verificaNumerico($valor);
 
-			if($this->saldo <= 0 || $this->saldo < $valor){
-				$this->contadorSaquesNaoPermitidos ++;
-				throw new \Exceptions\SaldoInsuficienteException("O saldo é insuficiente!");
+		if($this->saldo <= 0 || $this->saldo < $valor){
+			$this->contadorSaquesNaoPermitidos ++;
+			throw new \Exceptions\SaldoInsuficienteException("O saldo é insuficiente!");
 
-			}
+		}
 
-			$this->saldo = $this->saldo - $valor;
-			return $this;
+		$this->saldo = $this->saldo - $valor;
+		return $this;
 
 
 	}
